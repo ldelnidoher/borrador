@@ -45,6 +45,7 @@ def create_df(val,df5,df_mjd):
     conv2 = (df5[df5['type_eam'] == 1])[df5.columns[-11:]].values[0]
     conv_dates = ((df5[df5['type_eam'] == 0])["pub_date"].values)[0]
     epochs = (df_mjd[df_mjd["pub_date"] == conv_dates])[df5.columns[-11:]].iloc[0].values
+    epochs =[int(x) for x in epochs]
     dates_fmt = [(Time(item,format = 'mjd').to_value('datetime')).strftime("%Y-%m-%d %H:%M:%S") for item in epochs]
     if val in 'dut1':
          txt = 's'
