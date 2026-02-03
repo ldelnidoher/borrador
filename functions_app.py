@@ -199,8 +199,8 @@ def read_iers():
 
 @st.cache_data(ttl = 3600, show_spinner=False)
 def interval_dates(df_fcn):
-    inicio = df_fcn['Date [YY-MM-DD]'].values[-365*10]
-    fin = df_fcn['Date [YY-MM-DD]'].values[-1]
+    inicio = df_fcn.date.values[-365*10]
+    fin = df_fcn.date.values[-1]
     inicio = datetime.datetime.strptime(inicio, '%Y-%m-%d %H:%M:%S')
     fin = datetime.datetime.strptime(fin, '%Y-%m-%d %H:%M:%S')
     return inicio, fin
@@ -248,8 +248,8 @@ def fig_eops(df,txt,selected,lim):
 @st.cache_data(ttl = 3600, show_spinner='Loading data')
 def fig_fcn(intervalo, df_fcn, dx_c04, dy_c04):
     a, b = intervalo[0].strftime('%Y-%m-%d %H:%M:%S'), intervalo[1].strftime('%Y-%m-%d %H:%M:%S')
-    i = (df_fcn[df_fcn['Date [YY-MM-DD]'] == a].index)[0]
-    f = (df_fcn[df_fcn['Date [YY-MM-DD]'] == b].index)[0]
+    i = (df_fcn[df_fcn.date == a].index)[0]
+    f = (df_fcn[df_fcn.date == b].index)[0]
     
     if f> len(df_fcn):
         xval = len(df_fcn)
@@ -257,10 +257,10 @@ def fig_fcn(intervalo, df_fcn, dx_c04, dy_c04):
         xval = f
         
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x = df_fcn['Date [YY-MM-DD]'][i:xval], y = dx_c04[i:xval], mode = 'lines+markers',marker = dict(size = 2.5), line = dict(width = 1,dash = 'dot'),name = 'dX IERS 20u23 C04'))
-    fig.add_trace(go.Scatter(x = df_fcn['Date [YY-MM-DD]'][i:xval], y = dy_c04[i:xval], mode = 'lines+markers',marker = dict(size = 2.5), line = dict(width = 1,dash = 'dot'),name = 'dY IERS 20u23 C04'))
-    fig.add_trace(go.Scatter(x = df_fcn['Date [YY-MM-DD]'][i:f], y = df_fcn[df_fcn.columns[6]][i:f], mode = 'lines+markers',marker = dict(size = 3), line = dict(width = 1.2),name = 'FCN - dX'))
-    fig.add_trace(go.Scatter(x = df_fcn['Date [YY-MM-DD]'][i:f], y = df_fcn[df_fcn.columns[7]][i:f], mode = 'lines+markers',marker = dict(size = 3), line = dict(width = 1.2),name = 'FCN - dY'))
+    fig.add_trace(go.Scatter(x = df_fcn.date[i:xval], y = dx_c04[i:xval], mode = 'lines+markers',marker = dict(size = 2.5), line = dict(width = 1,dash = 'dot'),name = 'dX IERS 20u23 C04'))
+    fig.add_trace(go.Scatter(x = df_fcn.date[i:xval], y = dy_c04[i:xval], mode = 'lines+markers',marker = dict(size = 2.5), line = dict(width = 1,dash = 'dot'),name = 'dY IERS 20u23 C04'))
+    fig.add_trace(go.Scatter(x = df_fcn.date[i:f], y = df_fcn[df_fcn.columns[6]][i:f], mode = 'lines+markers',marker = dict(size = 3), line = dict(width = 1.2),name = 'FCN - dX'))
+    fig.add_trace(go.Scatter(x = df_fcn.date[i:f], y = df_fcn[df_fcn.columns[7]][i:f], mode = 'lines+markers',marker = dict(size = 3), line = dict(width = 1.2),name = 'FCN - dY'))
     fig.update_layout(title = 'FCN-CPOs solutions',
                       title_font_color = '#fb9a5a',
                       title_font_size = 28,
