@@ -282,7 +282,7 @@ def fig_fcn(intervalo, df_fcn, dx_c04, dy_c04):
                       tickcolor = '#d1d1d1',
                       )
     
-    fig.update_yaxes(title_text="muas",
+    fig.update_yaxes(title_text="[$\mu$as]",
                       tickfont_size = 14,
                       ticks = 'outside',
                       tickcolor = '#d1d1d1',
