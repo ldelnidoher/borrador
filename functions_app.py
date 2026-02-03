@@ -225,12 +225,13 @@ def fig_eops(df,txt,selected,lim):
                       legend_title_font_size = 18
                       )
     fig.update_layout(plot_bgcolor = '#fff')
-    fig.update_xaxes(title_text="Date",
+    fig.update_xaxes(title_text="Epoch [MJD]",
                      tickfont_size = 14,
                      ticks = 'outside',
                      minor_ticks = 'outside',
                      minor_dtick = 1,
                      tickcolor = '#d1d1d1',
+                     tickformat = 'd'
                      )
     
     fig.update_yaxes(title_text=f"[{txt}]",
