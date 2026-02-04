@@ -69,9 +69,9 @@ def create_download(df,selected,txt,fm,t):
     else:
         txt = txt+']'
     if t:
-        np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}',f'{fm}',f'{fm}'], delimiter='   \t', header = f'   Date [YY-MM-DD]  |  Epoch[MJD]  | w/o EAM [{txt}  | w/EAM  [{txt} |NEW w/o EAM [{txt}| NEW w/EAM  [{txt}')
+        np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}',f'{fm}',f'{fm}'], delimiter='   \t', header = f'  Date [YY-MM-DD]  |  Epoch[MJD]  | w/o EAM [{txt}  | w/EAM  [{txt} |NEW w/o EAM [{txt}| NEW w/EAM  [{txt}')
     else:
-        np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}'], delimiter='   \t', header = f' Date [YY-MM-DD]  |  Epoch[MJD]  |  w/o EAM [{txt}  |    w/EAM  [{txt}')
+        np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}'], delimiter='   \t', header = f'  Date [YY-MM-DD]  |  Epoch[MJD]  |  w/o EAM [{txt}  |    w/EAM  [{txt}')
     f = open('param.txt','r') 
     lista =f.read()
     f.close()
