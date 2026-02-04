@@ -71,7 +71,7 @@ def create_download(df,selected,txt,fm,t):
     if t:
         np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}',f'{fm}',f'{fm}'], delimiter='   \t', header = f'   Date [YY-MM-DD]  |  Epoch[MJD]  | w/o EAM [{txt}  | w/EAM  [{txt} |NEW w/o EAM [{txt}| NEW w/EAM  [{txt}')
     else:
-        np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}'], delimiter='   \t', header = f'  Date [YY-MM-DD]  |  Epoch[MJD]  |  w/o EAM [{txt}  |    w/EAM  [{txt}')
+        np.savetxt('param.txt',df, fmt = ['% s','%5d',f'{fm}',f'{fm}'], delimiter='   \t', header = f' Date [YY-MM-DD]  |  Epoch[MJD]  |  w/o EAM [{txt}  |    w/EAM  [{txt}')
     f = open('param.txt','r') 
     lista =f.read()
     f.close()
@@ -92,11 +92,11 @@ def history1(dff):
     df_si_hist = pd.DataFrame(data = [], columns = ['date','epoch','dop','xpol','ypol','dut1','dx','dy'])
     df_si = dff[dff['type_eam'] == 1].sort_values('pub_date')
     
-    
     for item in ['epoch','xpol','ypol','dx','dy','dut1']:
         d1 = df_no[df_no['parameter']==item]
         d2 = df_si[df_si['parameter']==item]
         
+    
         df_no_hist[item] = (d1[d1.columns[-11:]].values).flatten()
         df_si_hist[item] = (d2[d2.columns[-11:]].values).flatten()
             
